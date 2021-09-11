@@ -1,0 +1,157 @@
+import java.util.Scanner;
+/*
+ | 1) Mostrar la cadena invertida por letra y por palabras
+ | 2) Agregar/eliminar caracteres y/o subcadenas en posiciones especificas
+ | 3) Mostrar cadena en formato CaMeL CaSe  especial
+ | 4) Mostar la cadena con la primer letra de cada palabra en mayúscula
+*/
+
+class Cadenas{
+	Scanner entrada = new Scanner(System.in);
+	private String cadena;
+	
+	public Cadenas(String cadena) {
+		this.cadena = cadena;
+	}
+	public void setCadena(String cadena) {
+		this.cadena = cadena;
+	}
+	
+	public String getCadena() {
+		return cadena;
+	}
+	
+	1) Mostrar la cadena invertida por letra y por palabras
+	public String invertirLetras() {
+	public String invertirPalabras() {
+		String cadenaDividida[] = cadena.split(" ");
+		String cadenaInvertida = "";
+		for(int i = cadenaDividida.length-1; i>=0; i--) {
+		String cadenaInvertida = "";
+		for(int i = cadena.length()-1; i>=0; i--) {
+			cadenaInvertida += cadena.charAt(i);
+      if(i == cadenaDividida.length-1) {
+				cadenaInvertida = cadenaInvertida + cadenaDividida[i];
+		}
+			}
+			else {
+				cadenaInvertida = cadenaInvertida + " " + cadenaDividida[i];
+			}
+		}
+		return cadenaInvertida;
+	}
+	
+	2) Agregar/eliminar caracteres y/o subcadenas en posiciones especificas
+	public String agregarTexto() {
+		String cad1 = "", cad2 = "", cad3 = "";
+		System.out.print("Escoger el caracter inicial: ");
+		int op1 = entrada.nextInt();
+		cad1 = cadena.substring(0, op1);
+		cad2 = cadena.substring(op1-1, cadena.length());
+		System.out.print("Ingresar el texto del codigo: ");
+		cad3 = entrada.next();
+		return (cad1+cad3+cad2); 
+    eliminar caracteres y/o subcadenas en posiciones especificas
+	public String eliminarTexto() {
+		String cad1 = "", cad2 = "";
+		System.out.print("Escoger el caracter incial a eliminar : ");
+		int op1 = entrada.nextInt();
+		System.out.print("Escoger el caracter de fin a eliminar: ");
+		int op2 = entrada.nextInt();
+		cad1 = cadena.substring(0, op1);
+		cad2 = cadena.substring(op2, cadena.length());
+		return (cad1+cad2);
+	    }
+	 }
+	
+   
+	3) Mostrar cadena en formato CaMeL CaSe  especial
+	public String cadenaCamelCaseEsp() {
+		String cadenaCamel = "";
+		for(int i = 0; i<=cadena.length()-1; i++) {
+			if(i%2 == 0) {
+				cadenaCamel += cadena.substring(i, i+1).toUpperCase();
+			}
+			else {
+				cadenaCamel += cadena.substring(i, i+1).toLowerCase();
+			}
+		}
+		return cadenaCamel;
+	}
+	
+	4) Mostar la cadena con la primer letra de cada palabra en mayúscula
+	public String cadenaLetraMayus() {
+		String cadenaDividida[] = cadena.split(" ");
+		String cadenaFinal = "";
+		String cadenaMayus = "";
+		for(int i = 0; i <= cadenaDividida.length-1; i++) {
+			cadenaDividida[i].toLowerCase();
+			for(int j = 0; j <= cadenaDividida[i].length()-1; j++) {
+				if(j ==  0) {
+					cadenaMayus += cadenaDividida[i].substring(j, j+1).toUpperCase();
+				}
+				else {
+					cadenaMayus += cadenaDividida[i].substring(j, j+1).toLowerCase();
+				}
+			}
+			cadenaDividida[i] = cadenaMayus;
+			cadenaMayus = "";
+			if(i ==  0) {
+				cadenaFinal += cadenaDividida[i];
+			}
+			else {
+				cadenaFinal += " " + cadenaDividida[i];
+			}
+		}
+		return cadenaFinal;
+	}
+}
+
+public class Cadenas {
+	public static void main(String[] args) {
+		String cad = "Ing. en sistemas computacinoales";
+		CadenaEspecial ob1 = new CadenaEspecial(cad);
+		Scanner entrada = new Scanner(System.in);
+
+		System.out.println("OPCIONES");
+		System.out.println("1) Mostrar la cadena invertida por letra \r\n"
+				+ "1.5) Mostrar la cadena invertida por palabras \r\n"
+				+ "2) Agregar caracteres y/o subcadenas en posiciones especificas \r\n"
+				+ "2.5) Eliminar caracteres y/o subcadenas en posiciones especificas \r\n"
+				+ "3) Mostrar cadena en formato CaMeL CaSe  especial \r\n"
+				+ "4) Mostar la cadena con la primer letra de cada palabra en mayúscula \r\n"
+				+ "5) Mostar la cadena actual \r\n"
+				+ "6) Salir");
+		
+		int s=0;
+		while (s == 0) {
+			System.out.println("------");
+			System.out.println("Escja una opcion:");
+			String op = entrada.next();
+			switch(op) {
+				case "1": System.out.println(ob1.invertirLetras());
+					break;
+          else{
+				case "1.5": System.out.println(ob1.invertirPalabras());
+					break;
+          }
+				case "2": System.out.println(ob1.agregarTexto());
+					break;
+          else{
+				case "2.5": System.out.println(ob1.eliminarTexto());
+					break;
+          }
+				case "3": System.out.println(ob1.cadenaCamelCaseEsp());
+					break;
+				case "4": System.out.println(ob1.cadenaLetraMayus());
+					break;
+				case "5": System.out.println(ob1.getCadena());;
+					break;
+				case "6": s = 1;
+					break;
+				default: System.out.println("Elegir una opcion correcta");
+					break;
+			}
+		}
+	}
+}
